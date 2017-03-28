@@ -1,0 +1,4 @@
+usr/include/android/gralloc-drm-*
+usr/lib/*/libandroid-gralloc-drm.a
+usr/lib/*/libandroid-gralloc-drm.so
+usr/lib/*/pkgconfig/android-gralloc-drm-*.pc

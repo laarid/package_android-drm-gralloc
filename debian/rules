@@ -1,0 +1,20 @@
+#!/usr/bin/make -f
+
+# output every command that modifies files on the build system.
+#DH_VERBOSE = 1
+
+# see EXAMPLES in dpkg-buildflags(1) and read /usr/share/dpkg/*
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/default.mk
+
+CONFFLAGS =
+ifneq ($(filter pkg.android-drm-gralloc.stage2,$(DEB_BUILD_PROFILES)),)
+CONFFLAGS += --with-stage=2
+endif
+
+# main packaging script based on dh7 syntax
+%:
+	dh $@ --with autoreconf --builddirectory=build --parallel
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(CONFFLAGS)

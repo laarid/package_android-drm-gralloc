@@ -1,0 +1,8 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: android-drm-gralloc
+Source: https://github.com/laarid/package_android-drm-gralloc
+
+Files: *
+Copyright: 2017 Android-X86 Open Source Project
+           2017 You-Sheng Yang
+License: Apache-2.0

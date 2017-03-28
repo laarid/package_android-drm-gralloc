@@ -1,0 +1,51 @@
+Source: android-drm-gralloc
+Priority: extra
+Maintainer: You-Sheng Yang <vicamo@gmail.com>
+Build-Depends:
+ debhelper (>= 9),
+ dh-autoreconf,
+ autoconf-archive,
+ pkg-config,
+ libandroid-cutils0-dev (>= 0.0.16) <!pkg.android-drm-gralloc.stage2>,
+ libandroid-hardware0-dev (>= 0.0.1+b1) <!pkg.android-drm-gralloc.stage2>,
+ libandroid-hardware-legacy0-dev (>= 0.0.2) <!pkg.android-drm-gralloc.stage2>,
+ libandroid-log0-dev (>= 0.0.16),
+ libdrm-dev (>= 2.4.66),
+ libltdl-dev,
+Standards-Version: 3.9.5
+Section: libs
+Homepage: https://github.com/laarid/package_android-drm-gralloc
+Vcs-Git: https://github.com/laarid/package_android-drm-gralloc.git
+Vcs-Browser: https://github.com/laarid/package_android-drm-gralloc
+
+Package: libandroid-gralloc-drm0
+Build-Profiles: <!pkg.android-drm-gralloc.stage2>
+Priority: extra
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends:
+ ${misc:Pre-Depends},
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends},
+Description: Android libgralloc_drm
+ This package contains Android libgralloc_drm helper library for MESA android
+ platform.
+
+Package: libandroid-gralloc-drm0-dev
+Build-Profiles: <!pkg.android-drm-gralloc.stage2>
+Priority: extra
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends:
+ libandroid-gralloc-drm0 (= ${binary:Version}),
+ libandroid-cutils0-dev (>= 0.0.16),
+ libandroid-hardware0-dev (>= 0.0.1+b1),
+ ${misc:Depends},
+Description: Android libgralloc_drm - development
+ This package contains Android libgralloc_drm helper library for MESA android
+ platform.
+ .
+ This package contains the development files.

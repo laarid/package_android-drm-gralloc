@@ -1,0 +1,12 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: android-gralloc-drm-@LAARID_API_VERSION@
+Description: Android Binder library
+Version: @VERSION@
+Requires.private: android-hardware-legacy-@HARDWARE_LEGACY_API_VERSION@ >= @HARDWARE_LEGACY_REQUIRED_VERSION@, android-log-@SYSTEMCORE_API_VERSION@ >= @SYSTEMCORE_REQUIRED_VERSION@, libdrm >= @LIBDRM_REQUIRED_VERSION@
+Requires: android-cutils-@SYSTEMCORE_API_VERSION@ >= @SYSTEMCORE_REQUIRED_VERSION@, android-hardware-@HARDWARE_API_VERSION@ >= @HARDWARE_REQUIRED_VERSION@
+Libs: -L${libdir} -landroid-gralloc-drm
+Cflags: -I${includedir}/android/gralloc-drm-@LAARID_API_VERSION@
