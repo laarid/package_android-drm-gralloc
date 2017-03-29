@@ -24,8 +24,8 @@
 #   laarid_interface_revision = 0
 m4_define([laarid_major_version], [0])
 m4_define([laarid_minor_version], [0])
-m4_define([laarid_micro_version], [1])
-m4_define([laarid_interface_revision], [0])
+m4_define([laarid_micro_version], [2])
+m4_define([laarid_interface_revision], [1])
 m4_define([laarid_api_version], [laarid_major_version.0])
 m4_define([laarid_release_number], [laarid_major_version])
 m4_define([laarid_version],
@@ -129,6 +129,17 @@ HARDWARE_API_VERSION=0.0
 HARDWARE_REQUIRED_VERSION=0.0.1
 HARDWARE_LEGACY_API_VERSION=0.0
 HARDWARE_LEGACY_REQUIRED_VERSION=0.0.1
+AC_SUBST([LIBDRM_REQUIRED_VERSION])
+AC_SUBST([LIBDRM_FREEDRENO_REQUIRED_VERSION])
+AC_SUBST([LIBDRM_INTEL_REQUIRED_VERSION])
+AC_SUBST([LIBDRM_NOUVEAU_REQUIRED_VERSION])
+AC_SUBST([LIBDRM_RADEON_REQUIRED_VERSION])
+AC_SUBST([SYSTEMCORE_API_VERSION])
+AC_SUBST([SYSTEMCORE_REQUIRED_VERSION])
+AC_SUBST([HARDWARE_API_VERSION])
+AC_SUBST([HARDWARE_REQUIRED_VERSION])
+AC_SUBST([HARDWARE_LEGACY_API_VERSION])
+AC_SUBST([HARDWARE_LEGACY_REQUIRED_VERSION])
 
 PKG_CHECK_MODULES([LIBDRM], [libdrm >= $LIBDRM_REQUIRED_VERSION])
 PKG_CHECK_MODULES([LOG], [android-log-$SYSTEMCORE_API_VERSION >= $SYSTEMCORE_REQUIRED_VERSION])
