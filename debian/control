@@ -43,6 +43,9 @@ Depends:
  libandroid-gralloc-drm0 (= ${binary:Version}),
  libandroid-cutils0-dev (>= 0.0.16),
  libandroid-hardware0-dev (>= 0.0.1+b1),
+ libandroid-hardware-legacy0-dev (>= 0.0.1),
+ libandroid-log0-dev (>= 0.0.16),
+ libdrm-dev (>= 2.4.66),
  ${misc:Depends},
 Description: Android libgralloc_drm - development
  This package contains Android libgralloc_drm helper library for MESA android
