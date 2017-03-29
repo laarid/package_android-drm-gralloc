@@ -25,18 +25,11 @@
 
 #include <cutils/log.h>
 #include <cutils/atomic.h>
-#include <stdlib.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
 #include "gralloc_drm.h"
 #include "gralloc_drm_priv.h"
 
 #define unlikely(x) __builtin_expect(!!(x), 0)
-
-#define GRALLOC_DRM_DEVICE "/dev/dri/card0"
 
 static int32_t gralloc_drm_pid = 0;
 
@@ -49,92 +42,6 @@ static int gralloc_drm_get_pid(void)
 		android_atomic_write((int32_t) getpid(), &gralloc_drm_pid);
 
 	return gralloc_drm_pid;
-}
-
-/*
- * Create the driver for a DRM fd.
- */
-static struct gralloc_drm_drv_t *
-init_drv_from_fd(int fd)
-{
-	struct gralloc_drm_drv_t *drv = NULL;
-	drmVersionPtr version;
-
-	/* get the kernel module name */
-	version = drmGetVersion(fd);
-	if (!version) {
-		ALOGE("invalid DRM fd");
-		return NULL;
-	}
-
-	if (version->name) {
-#ifdef ENABLE_FREEDRENO
-		if (!strcmp(version->name, "msm")) {
-			drv = gralloc_drm_drv_create_for_freedreno(fd);
-			ALOGI_IF(drv, "create freedreno for driver msm");
-		} else
-#endif
-#ifdef ENABLE_INTEL
-		if (!strcmp(version->name, "i915")) {
-			drv = gralloc_drm_drv_create_for_intel(fd);
-			ALOGI_IF(drv, "create intel for driver i915");
-		} else
-#endif
-#ifdef ENABLE_RADEON
-		if (!strcmp(version->name, "radeon")) {
-			drv = gralloc_drm_drv_create_for_radeon(fd);
-			ALOGI_IF(drv, "create radeon for driver radeon");
-		} else
-#endif
-#ifdef ENABLE_NOUVEAU
-		if (!strcmp(version->name, "nouveau")) {
-			drv = gralloc_drm_drv_create_for_nouveau(fd);
-			ALOGI_IF(drv, "create nouveau for driver nouveau");
-		} else
-#endif
-#ifdef ENABLE_PIPE
-		{
-			drv = gralloc_drm_drv_create_for_pipe(fd, version->name);
-			ALOGI_IF(drv, "create pipe for driver %s", version->name);
-		}
-#endif
-		if (!drv) {
-			ALOGE("unsupported driver: %s", (version->name) ?
-					version->name : "NULL");
-		}
-	}
-
-	drmFreeVersion(version);
-
-	return drv;
-}
-
-/*
- * Create a DRM device object.
- */
-struct gralloc_drm_t *gralloc_drm_create(void)
-{
-	struct gralloc_drm_t *drm;
-	int err;
-
-	drm = calloc(1, sizeof(*drm));
-	if (!drm)
-		return NULL;
-
-	drm->fd = open(GRALLOC_DRM_DEVICE, O_RDWR);
-	if (drm->fd < 0) {
-		ALOGE("failed to open %s", GRALLOC_DRM_DEVICE);
-		return NULL;
-	}
-
-	drm->drv = init_drv_from_fd(drm->fd);
-	if (!drm->drv) {
-		close(drm->fd);
-		free(drm);
-		return NULL;
-	}
-
-	return drm;
 }
 
 /*

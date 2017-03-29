@@ -18,3 +18,9 @@ endif
 
 override_dh_auto_configure:
 	dh_auto_configure -- $(CONFFLAGS)
+
+ifneq ($(filter pkg.android-drm-gralloc.stage2,$(DEB_BUILD_PROFILES)),)
+override_dh_install:
+	find debian/android-gralloc-hwmodule-drm -name '*.la' -exec rm '{}' ';'
+
+endif
