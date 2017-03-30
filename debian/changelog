@@ -1,3 +1,9 @@
+android-drm-gralloc (0.0.3) stretch; urgency=low
+
+  * build android-gralloc-hwmodule-drm as stage 2
+
+ -- You-Sheng Yang <vicamo@gmail.com>  Thu, 30 Mar 2017 16:53:54 +0800
+
 android-drm-gralloc (0.0.2+b1) stretch; urgency=low
 
   * fix pkg-config, again
