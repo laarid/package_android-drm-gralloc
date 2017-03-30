@@ -16,6 +16,16 @@ env:
   - JOB_STAGE=1 JOB_ARCH=mipsel
   - JOB_STAGE=1 JOB_ARCH=ppc64el
   - JOB_STAGE=1 JOB_ARCH=s390x
+  - JOB_STAGE=2 JOB_ARCH=amd64
+  - JOB_STAGE=2 JOB_ARCH=arm64
+  - JOB_STAGE=2 JOB_ARCH=armel
+  - JOB_STAGE=2 JOB_ARCH=armhf
+  - JOB_STAGE=2 JOB_ARCH=i386
+  - JOB_STAGE=2 JOB_ARCH=mips
+  - JOB_STAGE=2 JOB_ARCH=mips64el
+  - JOB_STAGE=2 JOB_ARCH=mipsel
+  - JOB_STAGE=2 JOB_ARCH=ppc64el
+  - JOB_STAGE=2 JOB_ARCH=s390x
   global:
   - DOCKER_EXEC_ROOT="sudo docker exec --interactive --tty --user root test_container"
   - DOCKER_EXEC="sudo docker exec --interactive --tty test_container"
