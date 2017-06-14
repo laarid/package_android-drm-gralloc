@@ -24,6 +24,7 @@
 #define LOG_TAG "GRALLOC-DRM"
 
 #include <fcntl.h>
+#include <stdlib.h>
 
 #include <cutils/log.h>
 

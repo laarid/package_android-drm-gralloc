@@ -23,6 +23,8 @@
 
 #define LOG_TAG "GRALLOC-DRM"
 
+#include <stdlib.h>
+
 #include <cutils/log.h>
 #include <cutils/atomic.h>
 
