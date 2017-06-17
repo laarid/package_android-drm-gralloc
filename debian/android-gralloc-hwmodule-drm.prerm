@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+multiarch=$(dpkg-architecture -qDEB_HOST_MULTIARCH)
+type=gralloc
+variant=drm
+
+if [ "$1" = "remove" ] ; then
+    update-alternatives --remove android-${type}-hwmodule /usr/lib/${multiarch}/hw/${type}.${variant}.so;
+fi

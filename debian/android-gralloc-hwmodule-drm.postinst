@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+multiarch=$(dpkg-architecture -qDEB_HOST_MULTIARCH)
+type=gralloc
+variant=drm
+
+update-alternatives --install \
+    /usr/lib/${multiarch}/hw/${type}.default.so \
+    android-${type}-hwmodule \
+    /usr/lib/${multiarch}/hw/${type}.${variant}.so \
+    30
